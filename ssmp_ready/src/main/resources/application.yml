@@ -1,0 +1,21 @@
+spring:
+  profiles:
+    active: dev
+
+logging:
+  charset:
+    console: utf-8
+    file: UTF-8
+  config: classpath:log4j2.xml
+
+mybatis-plus:
+  configuration:
+    map-underscore-to-camel-case: true
+    auto-mapping-behavior: full
+  type-aliases-package: com.uni.admin.model
+  global-config:
+    db-config:
+      logic-delete-value: 1
+      logic-not-delete-value: 0
+      id-type: input
+  mapper-locations: classpath*:mapper/**/*.xml

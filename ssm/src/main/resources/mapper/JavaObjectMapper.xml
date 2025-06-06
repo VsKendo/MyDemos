@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.vskendo.demo.dao.JavaObjectMapper">
+  <resultMap id="BaseResultMap" type="cn.vskendo.demo.common.pojo.JavaObject">
+    <id column="jco_id" jdbcType="INTEGER" property="jcoId" />
+    <result column="package_name" jdbcType="VARCHAR" property="packageName" />
+    <result column="access_modifiers" jdbcType="INTEGER" property="accessModifiers" />
+    <result column="o_name" jdbcType="VARCHAR" property="oName" />
+    <result column="main_type" jdbcType="VARCHAR" property="mainType" />
+    <result column="main_tag" jdbcType="VARCHAR" property="mainTag" />
+    <result column="note" jdbcType="VARCHAR" property="note" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    jco_id, package_name, access_modifiers, o_name, main_type, main_tag, note
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from java_object
+    where jco_id = #{jcoId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from java_object
+    where jco_id = #{jcoId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.vskendo.demo.common.pojo.JavaObject">
+    insert into java_object (jco_id, package_name, access_modifiers, 
+      o_name, main_type, main_tag, 
+      note)
+    values (#{jcoId,jdbcType=INTEGER}, #{packageName,jdbcType=VARCHAR}, #{accessModifiers,jdbcType=INTEGER}, 
+      #{oName,jdbcType=VARCHAR}, #{mainType,jdbcType=VARCHAR}, #{mainTag,jdbcType=VARCHAR}, 
+      #{note,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.vskendo.demo.common.pojo.JavaObject">
+    insert into java_object
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="jcoId != null">
+        jco_id,
+      </if>
+      <if test="packageName != null">
+        package_name,
+      </if>
+      <if test="accessModifiers != null">
+        access_modifiers,
+      </if>
+      <if test="oName != null">
+        o_name,
+      </if>
+      <if test="mainType != null">
+        main_type,
+      </if>
+      <if test="mainTag != null">
+        main_tag,
+      </if>
+      <if test="note != null">
+        note,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="jcoId != null">
+        #{jcoId,jdbcType=INTEGER},
+      </if>
+      <if test="packageName != null">
+        #{packageName,jdbcType=VARCHAR},
+      </if>
+      <if test="accessModifiers != null">
+        #{accessModifiers,jdbcType=INTEGER},
+      </if>
+      <if test="oName != null">
+        #{oName,jdbcType=VARCHAR},
+      </if>
+      <if test="mainType != null">
+        #{mainType,jdbcType=VARCHAR},
+      </if>
+      <if test="mainTag != null">
+        #{mainTag,jdbcType=VARCHAR},
+      </if>
+      <if test="note != null">
+        #{note,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.vskendo.demo.common.pojo.JavaObject">
+    update java_object
+    <set>
+      <if test="packageName != null">
+        package_name = #{packageName,jdbcType=VARCHAR},
+      </if>
+      <if test="accessModifiers != null">
+        access_modifiers = #{accessModifiers,jdbcType=INTEGER},
+      </if>
+      <if test="oName != null">
+        o_name = #{oName,jdbcType=VARCHAR},
+      </if>
+      <if test="mainType != null">
+        main_type = #{mainType,jdbcType=VARCHAR},
+      </if>
+      <if test="mainTag != null">
+        main_tag = #{mainTag,jdbcType=VARCHAR},
+      </if>
+      <if test="note != null">
+        note = #{note,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where jco_id = #{jcoId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.vskendo.demo.common.pojo.JavaObject">
+    update java_object
+    set package_name = #{packageName,jdbcType=VARCHAR},
+      access_modifiers = #{accessModifiers,jdbcType=INTEGER},
+      o_name = #{oName,jdbcType=VARCHAR},
+      main_type = #{mainType,jdbcType=VARCHAR},
+      main_tag = #{mainTag,jdbcType=VARCHAR},
+      note = #{note,jdbcType=VARCHAR}
+    where jco_id = #{jcoId,jdbcType=INTEGER}
+  </update>
+</mapper>
