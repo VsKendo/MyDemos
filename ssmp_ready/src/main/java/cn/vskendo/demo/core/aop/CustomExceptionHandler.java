@@ -21,15 +21,8 @@ public class CustomExceptionHandler {
     @ExceptionHandler(MethodArgumentNotValidException.class)
     @ResponseBody
     public ResponseEntity<JsonResult> methodArgumentNotValidException(MethodArgumentNotValidException e) {
-        List<ObjectError> allErrors = e.getAllErrors();
-        List<String> collect = allErrors.stream()
-                .map(DefaultMessageSourceResolvable::getDefaultMessage)
-                .toList();
         log.warn(e.getMessage());
-        if (ObjectUtils.isEmpty(collect)) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(JsonResult.error(HintMessage.UNKNOWN_ERROR));
-        }
-        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(JsonResult.error(collect.toString()));
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(JsonResult.error(e.getMessage()));
     }
 
     @ExceptionHandler(Exception.class)

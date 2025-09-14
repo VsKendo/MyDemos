@@ -1,45 +1,45 @@
 package cn.vskendo.demo.controller;
 
-
 import cn.vskendo.demo.core.common.model.JsonResult;
-import cn.vskendo.demo.core.common.pojo.Account;
-import cn.vskendo.demo.core.valid.Insert;
-import cn.vskendo.demo.core.valid.Update;
+import cn.vskendo.demo.core.common.model.pojo.Account;
 import cn.vskendo.demo.service.IAccountService;
-import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
-import lombok.extern.log4j.Log4j2;
-import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-@Log4j2
-@AllArgsConstructor
+/**
+ * <p>
+ * 账户表 前端控制器
+ * </p>
+ *
+ * @author vskendo
+ * @since 2025-09-14
+ */
 @RestController
 @RequestMapping("/account")
+@AllArgsConstructor
 public class AccountController {
     private final IAccountService accountService;
 
-    @RequestMapping("/list")
-    public JsonResult list() {
-        return JsonResult.success(accountService.list());
+    @PostMapping("/generate")
+    public JsonResult generate() {
+        Account account = new Account();
+        account.setName("tester1").setUsername("test").setPassword("123456");
+        accountService.save(account);
+        return JsonResult.success(account);
     }
 
-    @RequestMapping(value = "/one", method = RequestMethod.GET)
-    public JsonResult oneGet(@NotNull(message = "用户名查询不能为空") String username) {
-        return JsonResult.judge(accountService.lambdaQuery().eq(Account::getUsername, username).one());
+    @GetMapping("/get")
+    public JsonResult getAccount(int accountId) {
+        return JsonResult.success(accountService.getById(accountId));
     }
 
-    @RequestMapping(value = "/one", method = RequestMethod.PUT)
-    public JsonResult onePut(@Validated(Insert.class) Account account) {
-        return JsonResult.judge(accountService.lambdaUpdate().setEntity(account).update());
+    @PostMapping("/update")
+    public JsonResult getUpdatedAccount(int accountId) {
+        Account byId = accountService.getById(accountId);
+        accountService.updateById(byId.setUsername("updated"));
+        return JsonResult.success(byId);
     }
-
-    @RequestMapping(value = "/one", method = RequestMethod.PATCH)
-    public JsonResult oneUpdate(@Validated(Update.class) Account account) {
-        return JsonResult.judge(accountService.lambdaUpdate().setEntity(account).update());
-    }
-
 }
-

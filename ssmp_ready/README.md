@@ -1,24 +1,25 @@
-# Getting Started
+# ssmp_ready
 
-### Reference Documentation
+该项目采用 jdk 17 + springboot 3.5.5 + mybatis 3.0.5 + mybatis plus 3.5.14。
 
-For further reference, please consider the following sections:
+`docs/sqls.sql`中有表结构，`docs/docker.txt`是用 docker 创建数据库的命令。
 
-* [Official Apache Maven documentation](https://maven.apache.org/guides/index.html)
-* [Spring Boot Maven Plugin Reference Guide](https://docs.spring.io/spring-boot/3.4.4/maven-plugin)
-* [Create an OCI image](https://docs.spring.io/spring-boot/3.4.4/maven-plugin/build-image.html)
+该项目用 mbp 逆向工程生成了 account 表的实体类，并用 controller 完成了3个功能以展示 mbp 的用法：
 
-### Guides
+```shell
+# 随机新建1个account
+curl --request POST \
+  --url http://localhost:8080/account/generate
+# 更新1个 account
+curl --request POST \
+  --url 'http://localhost:8080/account/update?accountId=4'
+# 得到1个 account
+curl --request GET \
+  --url 'http://localhost:8080/account/get?accountId=4'
+```
 
-The following guides illustrate how to use some features concretely:
+# 特点
 
-* [Accessing data with MySQL](https://spring.io/guides/gs/accessing-data-mysql/)
+## 自动更新操作记录
 
-### Maven Parent overrides
-
-Due to Maven's design, elements are inherited from the parent POM to the project POM.
-While most of the inheritance is fine, it also inherits unwanted elements like `<license>` and `<developers>` from the
-parent.
-To prevent this, the project POM contains empty overrides for these elements.
-If you manually switch to a different parent and actually want the inheritance, you need to remove those overrides.
-
+实体类继承自`BaseEntity`，并且通过`AutoInsertDateConfig`的设置自动更新`createdTime`, `createdBy`, `updatedTime`和`updatedBy`

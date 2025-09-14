@@ -21,6 +21,9 @@ public class JsonResult implements Serializable {
         if (ObjectUtils.isEmpty(data)) {
             return error();
         }
+        if (data instanceof Boolean) {
+            if (!(Boolean) data) return error(false);
+        }
         return success(data);
     }
 
