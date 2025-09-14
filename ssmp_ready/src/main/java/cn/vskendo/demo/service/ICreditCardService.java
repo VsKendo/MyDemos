@@ -1,6 +1,6 @@
 package cn.vskendo.demo.service;
 
-import cn.vskendo.demo.common.pojo.CreditCard;
+import cn.vskendo.demo.core.common.pojo.CreditCard;
 import com.baomidou.mybatisplus.extension.service.IService;
 
 /**

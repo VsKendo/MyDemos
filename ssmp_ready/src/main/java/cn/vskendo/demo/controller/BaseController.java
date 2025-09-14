@@ -1,8 +1,8 @@
 package cn.vskendo.demo.controller;
 
 
-import cn.vskendo.demo.common.constants.HintMessage;
-import cn.vskendo.demo.common.model.JsonResult;
+import cn.vskendo.demo.core.common.constants.HintMessage;
+import cn.vskendo.demo.core.common.model.JsonResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 

@@ -1,6 +1,6 @@
 package cn.vskendo.demo.dao;
 
-import cn.vskendo.demo.common.pojo.DebitCard;
+import cn.vskendo.demo.core.common.pojo.DebitCard;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 
 /**

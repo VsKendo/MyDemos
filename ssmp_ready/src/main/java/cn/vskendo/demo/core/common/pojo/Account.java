@@ -1,4 +1,4 @@
-package cn.vskendo.demo.common.pojo;
+package cn.vskendo.demo.core.common.pojo;
 
 import cn.vskendo.demo.core.valid.Insert;
 import cn.vskendo.demo.core.valid.Query;

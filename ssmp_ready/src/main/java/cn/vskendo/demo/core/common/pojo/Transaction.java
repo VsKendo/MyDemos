@@ -1,4 +1,4 @@
-package cn.vskendo.demo.common.pojo;
+package cn.vskendo.demo.core.common.pojo;
 
 import com.baomidou.mybatisplus.annotation.TableId;
 import lombok.Builder;

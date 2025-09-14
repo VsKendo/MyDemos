@@ -1,6 +1,6 @@
 package cn.vskendo.demo.service;
 
-import cn.vskendo.demo.common.pojo.FundDailyData;
+import cn.vskendo.demo.core.common.pojo.FundDailyData;
 import com.baomidou.mybatisplus.extension.service.IService;
 
 /**

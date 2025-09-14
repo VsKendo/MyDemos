@@ -1,6 +1,6 @@
 package cn.vskendo.demo.dao;
 
-import cn.vskendo.demo.common.pojo.Transaction;
+import cn.vskendo.demo.core.common.pojo.Transaction;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 
 /**

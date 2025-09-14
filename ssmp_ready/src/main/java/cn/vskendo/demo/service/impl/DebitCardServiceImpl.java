@@ -1,6 +1,6 @@
 package cn.vskendo.demo.service.impl;
 
-import cn.vskendo.demo.common.pojo.DebitCard;
+import cn.vskendo.demo.core.common.pojo.DebitCard;
 import cn.vskendo.demo.dao.DebitCardMapper;
 import cn.vskendo.demo.service.IDebitCardService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;

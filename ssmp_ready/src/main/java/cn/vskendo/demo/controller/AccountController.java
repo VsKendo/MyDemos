@@ -1,10 +1,9 @@
 package cn.vskendo.demo.controller;
 
 
-import cn.vskendo.demo.common.model.JsonResult;
-import cn.vskendo.demo.common.pojo.Account;
+import cn.vskendo.demo.core.common.model.JsonResult;
+import cn.vskendo.demo.core.common.pojo.Account;
 import cn.vskendo.demo.core.valid.Insert;
-import cn.vskendo.demo.core.valid.Query;
 import cn.vskendo.demo.core.valid.Update;
 import cn.vskendo.demo.service.IAccountService;
 import jakarta.validation.constraints.NotNull;
@@ -15,10 +14,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+@Log4j2
 @AllArgsConstructor
 @RestController
 @RequestMapping("/account")
-@Log4j2
 public class AccountController {
     private final IAccountService accountService;
 

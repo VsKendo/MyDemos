@@ -1,6 +1,7 @@
 package cn.vskendo.demo.service;
 
-import cn.vskendo.demo.common.pojo.Fund;
+import cn.vskendo.demo.core.common.dto.FundDTO;
+import cn.vskendo.demo.core.common.pojo.Fund;
 import com.baomidou.mybatisplus.extension.service.IService;
 
 /**
@@ -12,5 +13,6 @@ import com.baomidou.mybatisplus.extension.service.IService;
  * @since 2025-06-07
  */
 public interface IFundService extends IService<Fund> {
+    Fund insertFund(FundDTO fund);
 
 }

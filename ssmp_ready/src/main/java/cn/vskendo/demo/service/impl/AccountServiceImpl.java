@@ -1,6 +1,6 @@
 package cn.vskendo.demo.service.impl;
 
-import cn.vskendo.demo.common.pojo.Account;
+import cn.vskendo.demo.core.common.pojo.Account;
 import cn.vskendo.demo.dao.AccountMapper;
 import cn.vskendo.demo.service.IAccountService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;

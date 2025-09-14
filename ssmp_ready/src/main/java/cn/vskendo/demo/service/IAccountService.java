@@ -1,6 +1,6 @@
 package cn.vskendo.demo.service;
 
-import cn.vskendo.demo.common.pojo.Account;
+import cn.vskendo.demo.core.common.pojo.Account;
 import com.baomidou.mybatisplus.extension.service.IService;
 
 /**

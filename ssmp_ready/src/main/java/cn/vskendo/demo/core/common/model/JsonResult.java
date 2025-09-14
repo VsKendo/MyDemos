@@ -1,4 +1,4 @@
-package cn.vskendo.demo.common.model;
+package cn.vskendo.demo.core.common.model;
 
 import com.baomidou.mybatisplus.core.toolkit.ObjectUtils;
 import lombok.AllArgsConstructor;

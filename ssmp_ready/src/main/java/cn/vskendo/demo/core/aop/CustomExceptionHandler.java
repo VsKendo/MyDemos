@@ -1,7 +1,7 @@
 package cn.vskendo.demo.core.aop;
 
-import cn.vskendo.demo.common.constants.HintMessage;
-import cn.vskendo.demo.common.model.JsonResult;
+import cn.vskendo.demo.core.common.constants.HintMessage;
+import cn.vskendo.demo.core.common.model.JsonResult;
 import com.baomidou.mybatisplus.core.toolkit.ObjectUtils;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.context.support.DefaultMessageSourceResolvable;

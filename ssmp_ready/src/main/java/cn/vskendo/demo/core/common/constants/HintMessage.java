@@ -1,4 +1,4 @@
-package cn.vskendo.demo.common.constants;
+package cn.vskendo.demo.core.common.constants;
 
 public class HintMessage {
     public static final String VERSION = "0.0.1";

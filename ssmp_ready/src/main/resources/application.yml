@@ -1,6 +1,45 @@
 spring:
   profiles:
     active: dev
+  messages:
+    basename: i18n/message
+    encoding: UTF-8
+  # 转json去除null,时间转换格式、时区
+  jackson:
+    default-property-inclusion: non_null
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+
+  servlet:
+    multipart:
+      enabled: true
+      max-file-size: 50MB
+      max-request-size: 50MB
+#  mvc:
+#    static-path-pattern: /**
+#    view:
+#      suffix: .html
+#  web:
+#    resources:
+#      static-locations: classpath:/templates/,classpath:/static/
+# Server settings (ServerProperties)
+server:
+  port: 8080
+  #  address: localhost
+  compression:
+    enabled: true
+    min-response-size: 2048
+    mime-types: application/json,application/xml,text/html,text/plain
+  servlet:
+    session:
+      timeout: 30
+    context-path: /
+
+
+#shiro-session-timeout单位毫秒
+shiro:
+  session:
+    timeout: 1800000
 
 logging:
   charset:
