@@ -1,0 +1,55 @@
+version: "3.8"
+services:
+  nacos:
+    image: nacos/nacos-server:v3.2.0
+    container_name: nacos-standalone-mysql
+    env_file:
+      - ./env/nacos-standalone-mysql.env
+    volumes:
+      - ./standalone-logs/:/home/nacos/logs
+    ports:
+      - "18080:8080"
+      - "8848:8848"
+      - "9848:9848"
+    depends_on:
+      mysql:
+        condition: service_healthy
+    deploy:
+      resources:
+        limits:
+          memory: 1G # Nacos 启动较重，建议至少给 512M 限制
+        reservations:
+          memory: 256M # 最低保证 256M
+        
+  mysql:
+    container_name: mysql
+    image: mysql:8.4.6
+    env_file:
+      - ./env/mysql.env
+    volumes:
+      - ./mysql:/var/lib/mysql
+      - ./mysql-init:/docker-entrypoint-initdb.d/
+    command:
+      --character-set-server=utf8mb4
+      --collation-server=utf8mb4_unicode_ci
+    ports:
+      - "13306:3306"
+    healthcheck:
+      test: [ "CMD", "mysqladmin" ,"ping", "-h", "localhost" ]
+      interval: 10s
+      timeout: 10s
+      retries: 5
+  
+  redis:
+    image: redis:8.6.2-alpine # 使用轻量的 alpine 版本
+    container_name: redis
+    ports:
+      - "16379:6379"
+    volumes:
+      - ./redis-data:/data
+    # 加上密码保护，云服务器建议一定要设密码
+    command: redis-server --requirepass bLgf7Z7E2tYRZFgbUuv --maxmemory 200mb --maxmemory-policy allkeys-lru
+    deploy:
+      resources:
+        limits:
+          memory: 256M # 强制限制 Redis 内存，防止撑爆系统

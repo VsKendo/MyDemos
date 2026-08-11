@@ -21,13 +21,13 @@ brew install --cask docker
 
 ## 3. 初始化 Minikube
 
-如果内存不足可以使用更少内存
+如果内存不足可以使用更少内存。启动时也可以`-p dev-cluster`方便后续切换。
 
 ```bash
 minikube start \
 --driver=docker \
 --cpus=4 --memory=8192 \
---ports=127.0.0.1:30543:30543,127.0.0.1:30639:30639,127.0.0.1:30080:3008
+--ports=127.0.0.1:30543:30543,127.0.0.1:30639:30639,127.0.0.1:30080:30080
 --base-image="gcr.io/k8s-minikube/kicbase:v0.0.50" \
 --mount \
 --mount-string="$HOME/minikube-data:/mnt/host-data"
@@ -406,7 +406,7 @@ minikube ip
 1. 访问服务：`minikube service springboot-svc`
 2. 重新启动上方的集群：`minikube start`
 3. 停止集群（保留数据）：`minikube stop`
-4. 清空所有集群数据（重新搭建用）：`minikube delete`
+4. 清空所有集群数据z（重新搭建用）：`minikube delete`
 5. 验证集群`kubectl get nodes`
 6. 打开k8s可视化面板`minikube dashboard`
 7. 切换 docker 环境构建 spring 镜像：`eval $(minikube docker-env)` + docker build

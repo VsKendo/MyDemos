@@ -1,0 +1,34 @@
+version: "3.8"
+services:
+  mysql:
+    container_name: mysql
+    image: mysql:8
+    env_file:
+      - ./env/mysql.env
+    volumes:
+      - ./mysql:/var/lib/mysql
+      - ./mysql-init:/docker-entrypoint-initdb.d/
+    command:
+      --character-set-server=utf8mb4
+      --collation-server=utf8mb4_unicode_ci
+    ports:
+      - "13306:3306"
+    healthcheck:
+      test: [ "CMD", "mysqladmin" ,"ping", "-h", "localhost" ]
+      interval: 10s
+      timeout: 10s
+      retries: 5
+  
+  redis:
+    image: redis:alpine # 使用轻量的 alpine 版本
+    container_name: redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - ./redis-data:/data
+    # 加上密码保护，云服务器建议一定要设密码
+    command: redis-server --requirepass bLgf7Z7E2tYRZFgbUuv --maxmemory 150mb --maxmemory-policy allkeys-lru
+    deploy:
+      resources:
+        limits:
+          memory: 256M # 强制限制 Redis 内存，防止撑爆系统

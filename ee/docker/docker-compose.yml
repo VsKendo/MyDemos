@@ -1,0 +1,37 @@
+services:
+    redis:
+        image: redis:7
+        restart: unless-stopped
+        ports:
+            - "6379:6379"
+        volumes:
+            - redis_data:/data
+    db:
+        image: postgres:15
+        restart: unless-stopped
+        environment:
+            - POSTGRES_PASSWORD=password
+            - POSTGRES_USER=admin
+        ports:
+            - "5432:5432"
+        volumes:
+            - postgres_data:/var/lib/postgresql/data
+    plantuml:
+        image: plantuml/plantuml-server:jetty
+        restart: unless-stopped
+        ports:
+            - "9090:8080"
+        environment:
+            - PLANTUML_SECURITY_PROFILE=INTERNET
+    swagger-ui:
+        image: swaggerapi/swagger-ui
+        ports:
+            - "18080:8080"
+        restart: unless-stopped
+        # environment:
+        # 不指定 URLS_REF，这样启动后可以手动上传文档
+        # - URLS_REF=https://petstore.swagger.io/v2/swagger.json
+        # Mount to Docker-managed volumes to avoid folder permission issues on Windows
+volumes:
+    redis_data:
+    postgres_data:
